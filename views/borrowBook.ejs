@@ -8,14 +8,17 @@
 <body>
     <%- include ('./partials/navbar') %>
 
-    <h3>INSERT USER NAME HERE</h3>
+    <h3>Welcome, <%= borrower[0].name %></h3>
 
 
     <h4>Add Book To Borrow</h4>
-    <form action="/books/borrow">
-        <select name="title" id="">
+    <form action="/books/borrow" method="POST">
+        <select name="BorrowerId" id="">
+            <option value="<%= borrower[0].id %>" selected><%= borrower[0].name %></option>
+        </select>
+        <select name="BookId" id="">
             <% for (let i = 0; i < book.length; i++) { %>
-                <option value="book[i].id"><%= book[i].title %></option>
+                <option value="<%= book[i].id %>"><%= book[i].title %></option>
             <% } %>
         </select>
         <button type="submit">Borrow Book</button>
