@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include ('./partials/navbar') %>
+
+    <table>
+        <th>Title</th>
+        <th>Stock</th>
+        <% for (let i = 0; i < data.length; i++) { %>
+            <tr>
+                <td><%= data[i].title %></td>
+                <td><%= data[i].stock %></td>
+            </tr>
+        <% } %>
+    </table>
+    <a href="/books/borrow">Borrow Book</a>
+</body>
+</html>

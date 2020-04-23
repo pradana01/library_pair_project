@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   
   Borrower.associate = function(models) {
     // associations can be defined here
+    Borrower.belongsToMany(models.Book, {through: models.borrowedBook})
   };
   return Borrower;
 };
