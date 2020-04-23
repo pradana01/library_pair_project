@@ -1,4 +1,5 @@
 const { Borrower, Admin } = require('../models');
+const bcrypt = require('bcryptjs')
 
 class HomeController {
     static getHome (req, res) {
@@ -7,6 +8,11 @@ class HomeController {
 
     static notFound (req, res) {
         const err = 'Sorry, the page that you are looking for is not found'
+        res.render('error.ejs', {err})
+    }
+
+    static unauthorized (req, res) {
+        const err = 'Sorry, you are not allowed to access this page'
         res.render('error.ejs', {err})
     }
 
@@ -44,9 +50,13 @@ class HomeController {
                 res.redirect('/signin?msg=2')
             }else{
                 req.session.userId = data.id
-                req.session.role = 'borrower'
+                req.session.username = data.name
+                req.session.isAdmin = false
                 res.redirect('/borrower')
             }
+        })
+        .catch(err => {
+            res.send(err)
         })
     }
 
@@ -66,9 +76,13 @@ class HomeController {
                 res.redirect('/signin?msg=2')
             }else{
                 req.session.userId = data.id
-                req.session.role = 'admin'
+                req.session.username = 'Admin'
+                req.session.isAdmin = true
                 res.redirect('/admin')
             }
+        })
+        .catch(err => {
+            res.send(err)
         })
     }
 

@@ -1,14 +1,24 @@
-const route = require('express').Router()
+const router = require('express').Router()
 const admin = require('../controllers/admin')
 
-route.get('/', admin.showBooks)
+function isLoginAsAdmin(req, res, next) {
+    if(req.session.userId && req.session.isAdmin){
+        next()
+    }else{
+        res.redirect('/unauthorized')
+    }
+}
 
-route.get('/add', admin.showAddBookForm)
-route.post('/add', admin.addBookProcess)
+router.use(isLoginAsAdmin)
 
-route.get('/edit/:id', admin.showEditBookForm)
-route.post('/edit/:id', admin.editBookProcess)
+router.get('/', admin.showBooks)
 
-route.get('/delete/:id', admin.deleteBook)
+router.get('/add', admin.showAddBookForm)
+router.post('/add', admin.addBookProcess)
 
-module.exports = route
+router.get('/edit/:id', admin.showEditBookForm)
+router.post('/edit/:id', admin.editBookProcess)
+
+router.get('/delete/:id', admin.deleteBook)
+
+module.exports = router

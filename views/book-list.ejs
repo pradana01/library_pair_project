@@ -1,0 +1,29 @@
+<%- include('partials/header-user') %>
+
+
+<!-- Masthead-->
+<br><br><br><br><br><br><br><br>
+<header class="masthead">
+    <a class="btn btn-success" href="/admin/add" role="button">Add Book</a><br>
+    Total stok buku: <%= stockSum(books) %> 
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for( let i = 0; i < books.length; i++ ) { %>
+                <tr>
+                    <td><%= books[i].title %></td>
+                    <td><%= books[i].stock %></td>
+                    <td><a class="btn btn-primary" href="/admin/edit/<%= books[i].id %>" role="button">Edit</a> <a class="btn btn-primary" href="/admin/delete/<%= books[i].id %>" role="button"> Delete</a></td>
+                  </tr>
+            <% } %>
+        </tbody>
+      </table>
+</header>
+
+<%- include('partials/footer') %>

@@ -10,31 +10,12 @@ module.exports = (sequelize, DataTypes) => {
   Borrower.init({
     name: {
       type: DataTypes.STRING
-      // validate: {
-      //   notEmpty: {
-      //     msg: 'Nama harus diisi'
-      //   }
-      // }
     },
     email: {
       type: DataTypes.STRING
-      // validate: {
-      //   notEmpty: {
-      //     msg: 'Email harus diisi'
-      //   }
-      // }
     },
     password: {
       type: DataTypes.STRING
-      // validate: {
-      //   notEmpty: {
-      //     msg: 'Password harus diisi'
-      //   },
-      //   len: {
-      //     args: [5,10],
-      //     msg: 'Password antara 5 - 10 karakter'
-      //   }
-      // }
     }
   }, { sequelize })
 
@@ -46,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
   
   Borrower.associate = function(models) {
     // associations can be defined here
+    Borrower.belongsToMany(models.Book, { through: models.borrowedBook });
+    Borrower.hasMany(models.borrowedBook);
   };
   return Borrower;
 };

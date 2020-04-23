@@ -1,0 +1,38 @@
+<%- include('partials/header-user') %>
+
+
+<!-- Masthead-->
+<br><br><br><br><br><br><br><br>
+
+<form action="/borrower/borrow" method="POST">
+  <div class="form-group">
+      <label for="id">Title:</label>
+      <select class="form-control" id="id" name="id" required>
+          <% for(let i = 0; i < books.length; i++){ %> 
+          <option value="<%= books[i].id %>"><%= books[i].getTitleAndStock() %></option>
+          <% } %> 
+      </select>
+    </div>
+  <button type="submit" class="btn btn-primary">Borrow</button>
+</form>
+
+<header class="masthead">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for( let i = 0; i < borrower.Books.length; i++ ) { %>
+                <tr>
+                    <td><%= borrower.Books[i].title %></td>
+                    <td><a class="btn btn-primary" href="/borrower/return/<%=  borrower.Books[i].id %>/<%= borrower.Books[i].borrowedBook.id %>" role="button">Return</a></td>
+                  </tr>
+            <% } %>
+        </tbody>
+      </table>
+</header>
+
+<%- include('partials/footer') %>

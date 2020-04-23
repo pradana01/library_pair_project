@@ -1,9 +1,19 @@
-const route = require('express').Router()
-const borrower = require('../controllers/borrower')
+const router = require('express').Router()
+const BorrowerController = require('../controllers/borrower')
 
-route.get('/', borrower.getList)
+function isLoginAsBorrower(req, res, next) {
+    if(req.session.userId && req.session.isAdmin === false){
+        next()
+    }else{
+        res.redirect('/unauthorized')
+    }
+}
 
-route.get('/borrow', borrower.borrow)
-route.post('/borrow', borrower.postBorrow)
+router.use(isLoginAsBorrower)
 
-module.exports = route
+router.get('/', BorrowerController.showDashboard)
+
+router.post('/borrow', BorrowerController.borrow)
+router.get('/return/:id/:id1', BorrowerController.return)
+
+module.exports = router

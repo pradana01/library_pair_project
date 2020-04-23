@@ -4,31 +4,6 @@ const HomeController = require('../controllers/home')
 const admin = require('./admin')
 const borrower = require('./borrower')
 
-function isLogin(req, res, next) {
-    if(req.session.userId){
-        next()
-    }else{
-        res.redirect('/')
-    }
-}
-
-function isBorrower(req, res, next){
-    if(req.session.role === 'borrower'){
-        next()
-    }else{
-        res.render('error')
-    }
-}
-
-function isAdmin(req, res, next){
-    if(req.session.role === 'admin'){
-        next()
-    }else{
-        res.render('error')
-    }
-}
-
-
 router.get('/', HomeController.getHome)
 
 router.get('/signup', HomeController.showSignUpBorrower)
@@ -45,6 +20,7 @@ router.get('/signout', HomeController.signOut)
 router.use('/admin', admin)
 router.use('/borrower', borrower)
 
+router.get('/unauthorized', HomeController.unauthorized)
 router.get('/*', HomeController.notFound)
 
 module.exports = router
