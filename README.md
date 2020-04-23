@@ -1,3 +1,3 @@
 # library_pair_project
 
-npm i ejs express pg sequelize sequelize-cli
+npm i ejs express pg sequelize sequelize-cli express-session bcryptjs

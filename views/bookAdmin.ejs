@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/books/add">Add New Book</a>
+    <table>
+        <th>Title</th>
+        <th>Stock</th>
+        <th>Action</th>
+        <% for (let i = 0; i < data.length; i++) { %>
+            <tr>
+                <td><%= data[i].title %></td>
+                <td><%= data[i].stock %></td>
+                <td><a href="/books/<%= data[i].id %>/edit">Edit Book</a>   <a href="/books/<%= data[i].id %>/delete">Delete Book</a></td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>
