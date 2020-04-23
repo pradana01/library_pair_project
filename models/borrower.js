@@ -1,16 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Model = sequelize.Sequelize.Model
-  class Borrower extends Model {
+  const Sequelize = sequelize.Sequelize
+  const Model = Sequelize.Model
 
-  }
-  Borrower.init ({
+  class Borrower extends Model {}
+
+  Borrower.init({
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
-  }, {
-    sequelize
-  });
+  }, { sequelize })
+  
   Borrower.associate = function(models) {
     // associations can be defined here
   };

@@ -1,15 +1,7 @@
 'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
-   return queryInterface.createTable('BorrowerBooks', {
+    return queryInterface.createTable('borrowedBooks', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -33,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('BorrorweBooks');
+    return queryInterface.dropTable('borrowedBooks');
   }
 };

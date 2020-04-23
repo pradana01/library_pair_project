@@ -12,10 +12,12 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-   return queryInterface.bulkInsert('Books', [{
-    title: 'Book of Integrity',
-    stock: 10
-  }], {});
+    return queryInterface.bulkInsert('Admins', [{
+      email: 'admin@admin.com',
+      password: 'admin',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -26,6 +28,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
-   return queryInterface.bulkDelete('Books', null, {});
+    return queryInterface.bulkDelete('Admins', null, {});
   }
 };

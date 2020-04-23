@@ -3,15 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   const Sequelize = sequelize.Sequelize
   const Model = Sequelize.Model
 
-  class Admin extends Model {}
+  class borrowedBook extends Model {}
 
-  Admin.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+  borrowedBook.init({
+    BookId: DataTypes.INTEGER,
+    BorrowerId: DataTypes.INTEGER
   }, { sequelize })
-
-  Admin.associate = function(models) {
+  
+  borrowedBook.associate = function(models) {
     // associations can be defined here
   };
-  return Admin;
+  return borrowedBook;
 };
