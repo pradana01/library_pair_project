@@ -4,7 +4,8 @@ class HomeController {
     }
 
     static notFound (req, res) {
-        res.send('sorry, the page that you are looking for is currently under maintenance.')
+        const error = 'Sorry, the page that you are looking for is not found'
+        res.render('error.ejs', {error})
     }
 }
 
