@@ -1,4 +1,6 @@
 const { Book, Borrower, borrowedBook } = require('../models');
+const nodemailer = require("nodemailer");
+
 
 class BorrowerController {
     static showDashboard (req, res) {
@@ -58,6 +60,32 @@ class BorrowerController {
         .catch(err => {
             res.send(err)
         })
+    }
+    static getNotif (req, res) {
+        var transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'andreanwirapradana@gmail.com',
+                pass: '4n4ndy4w1r4'
+            }
+        })
+        
+        var mailOptions = {
+            from: 'andreanwirapradana@gmail.com',
+            to: req.session.email,
+            subject: 'Library App Notification',
+            text: `Ini adalah email notifikasi mengenai peminjaman buku anda. Deadline pengembalian buku adalah 14 hari terhitung dari hari buku dipinjam.`
+        }
+        
+        transport.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error)
+            }
+            else {
+                console.log('Email sent: ' + info.response)
+            }
+        })
+        res.redirect('/borrower')
     }
 }
 
