@@ -15,5 +15,6 @@ router.get('/', BorrowerController.showDashboard)
 
 router.post('/borrow', BorrowerController.borrow)
 router.get('/return/:id/:id1', BorrowerController.return)
+router.get('/getNotif', BorrowerController.getNotif)
 
 module.exports = router
