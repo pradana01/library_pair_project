@@ -50,6 +50,7 @@ class HomeController {
                 res.redirect('/signin?msg=2')
             }else{
                 req.session.userId = data.id
+                req.session.email = data.email
                 req.session.username = data.name
                 req.session.isAdmin = false
                 res.redirect('/borrower')
